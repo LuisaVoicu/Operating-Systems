@@ -1,0 +1,81 @@
+instructiuni importante:
+sudo apt install <nume_program> 
+
+->
+-> man :
+	afiseaza manualul de instructiuni pt comenzi din terminal,apeluri de sistem sau functii 
+	eg -> man ls
+-> cd - schimba directorul curent in cel dat ca parametru
+	eg -> cd /home/os/Documents
+
+-> pwd -afiseaza calea spre directorul curent
+
+-> mkdir -creeaza folder a carui cale s-a primit ca parametru
+	 -eg: mkdir myFolder 
+
+-> ls - afiseaza continutul unui fisier
+	- eg : ls 
+	       ls -l  -- -l orefa un anumit format..man ls pt detalii
+
+-> echo afiseaza textul primit ca parametru
+      	- eg : echo "eu sunt $LUISA"
+
+-> touch creeaza fisierul primit ca parametru
+	- eg : touch luisa.txt
+
+-> rm sterge fisierul primit ca parametru
+	- eg : rm luisa.txt
+
+-> cat - afiseaza continutul fisierelor primite ca parametru
+	- eg:  cat file.txt 
+
+-> chmod - schimba permisiunile unui fisier sau folder
+	 - eg: chmod 0740 file1
+	       chmod a-w file2
+
+####################################
+
+Lab 2
+--> se pot scrie mai multe comenzi pe aceeasi linie, separate prin caracterul ;
+		-- comenzile se executa succesiv, in ordinea in care au fost date
+
+=> separarea comenzilor: => |  - operatorul pipe : output-ul primei comenzi este folosit ca input pt cea de-a doua
+			    && - a doua comanda se executa doar daca prima s-a executat cu succes -- exit code = 0 (true)
+			    || - a doua comanda se executa doar daca prima nu s-a executat cu succes -- exit code != 0
+=> inputuri/outpurutile unei comenzi:
+			=> < -- redirectare standard input - ce ar fi introdus de la tastatura
+			=> > -- redirectare standard output - ce ar fi afisat pe ecran ca mesaj normal
+			=> 2> - redirectare standard error - adica ce ar fi afisat pe ecran ca mesaj DE EROARE
+
+	exemplu:
+		while read line; do echo $line; done < file.txt$ ls /etc > contents.txt 2> /dev/null
+
+=> comenzi uzuale
+	-> cp --> copiaza unul sau mai multe fisiere dintr-o locatie
+	     eg-> cp /etc/passwd my_passwd_copy.txt
+	
+	-> mv --> muza unul sau mai multe fisiere dintr-o locatie in alta
+	     eg-> mv my_passwd_copy.txt users_list.txt
+		~ e de fapt o operatie de redenumire
+	
+	-> less --> ne permite sa vizualizam in terminal un fisier text
+	     eg-> less file.txt |
+	
+	-> grep --> cauta un anumit continut intr-un fisier
+		grep root users_list.txt #se afiseaza liniile ce contin stringul root	
+		grep -v root users_list.txt #se afiseaza liniile ce NU contin stringul root
+	
+	-> wc - numara cuvinte,linii sau caractere in fisier
+	     eg->
+		wc file.txt # fiseaza toate 3
+		-l --> linii
+		-w --> cuvinte
+		-m --> caractere
+	
+	-> cut  --> filtrarea info
+	     eg->
+		cut -d: -f 1,6 /etc/passwd #extragem campurile 1 si 6 consideranc ca separator :
+						# adica luam ce e inainte dupa x numere
+		ls -l | cut -c 2,3,4 # din ls -l va lua caracterele de pe poz 2,3,4
+        
+

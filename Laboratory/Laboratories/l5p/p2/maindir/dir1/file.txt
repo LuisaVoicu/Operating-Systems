@@ -1,0 +1,3 @@
+hello from dir 1
+lab 5
+abc
